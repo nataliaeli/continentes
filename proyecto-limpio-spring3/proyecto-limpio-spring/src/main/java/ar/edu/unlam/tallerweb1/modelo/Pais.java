@@ -1,22 +1,31 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name= "PAIS")
 public class Pais {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	
+	    @Column(name= "ID")
 		private Long id;
+	    @Column(name= "NOMBRE")
 		private String nombre;
+	    @Column(name= "HABITANTE")
 		private Integer habitantes;
+	    @Column(name= "IDIOMA")
 		private String idioma;
-		private String capital;
+		
+	    @OneToOne
+		private Ciudad ciudad;
 				
 		@ManyToOne
 		private Continente continente;
@@ -48,18 +57,20 @@ public class Pais {
 		public void setIdioma(String idioma) {
 			this.idioma = idioma;
 		}
-		public String getCapital() {
-			return capital;
-		}
-		public void setCapital(String capital) {
-			this.capital = capital;
-		}
-		
+
 		public Continente getContinente() {
 			return continente;
 		}
 		public void setContinente(Continente continente) {
 			this.continente = continente;
+		}
+
+		public Ciudad getCiudad() {
+			return ciudad;
+		}
+
+		public void setCiudad(Ciudad ciudad) {
+			this.ciudad = ciudad;
 		}
 		
 }

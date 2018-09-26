@@ -1,19 +1,24 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name= "UBICACION")
 public class Ubicacion {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-		
+	    @Column(name= "ID")
 		private Long id;
-		private Integer latitud;
-		private Integer longitud;
+	    @Column(name= "LATITUD")
+		private double latitud;
+	    @Column(name= "LONGITUD")
+		private double longitud;
 		
 		@OneToOne
 		private Continente continente;
@@ -31,19 +36,20 @@ public class Ubicacion {
 			this.id = id;
 		}
 
-		public Integer getLatitud() {
+		
+		public double getLatitud() {
 			return latitud;
 		}
 
-		public void setLatitud(Integer latitud) {
+		public void setLatitud(double latitud) {
 			this.latitud = latitud;
 		}
 
-		public Integer getLongitud() {
+		public double getLongitud() {
 			return longitud;
 		}
 
-		public void setLongitud(Integer longitud) {
+		public void setLongitud(double longitud) {
 			this.longitud = longitud;
 		}
 
