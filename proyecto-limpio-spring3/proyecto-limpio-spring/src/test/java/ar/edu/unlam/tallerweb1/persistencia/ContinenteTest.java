@@ -48,9 +48,9 @@ public class ContinenteTest extends SpringTest{
 		
 	}
 	
-	//1)Escribir las clases con las relaciones correspondientes	
+//1)Escribir las clases con las relaciones correspondientes	
 		
-	//2)Buscar todos los paises de habla inglesa
+//2)Buscar todos los paises de habla inglesa
 		
 		@Test
 		@Transactional
@@ -129,7 +129,7 @@ public class ContinenteTest extends SpringTest{
 	    }
 	    
 	    
-	    //4- Hacer con junit un test que busque todos los países cuya capital están al norte del trópico de cáncer.
+//4- Hacer con junit un test que busque todos los países cuya capital están al norte del trópico de cáncer.
 
 	    @Test
 	    @Transactional
@@ -208,4 +208,54 @@ public class ContinenteTest extends SpringTest{
 		    	}
 					
 	    }
+	    
+ //5)Buscar todas las ciudades del hemisferio sur 
+	    
+	    @Test
+	    @Transactional
+	    @Rollback(true)
+	    
+	    public void ciudadesDelHemisferioSur() {
+	    	
+            ciudad.setNombre("Londres");
+	        
+	    	ciudad1.setNombre("Montevideo");
+
+	    	ciudad2.setNombre("Buenos Aires");
+	    	
+	    	ciudad3.setNombre("Sidney");
+	    	
+            ubicacion.setLatitud(51.5072);
+	    	
+	    	ubicacion1.setLatitud(-34.8833);
+	    	
+	    	ubicacion2.setLatitud(-34.6083);
+	    	
+	    	ubicacion3.setLatitud(-33.8667);
+	    	
+	    	ciudad.setUbicacion(ubicacion);
+	    	ciudad1.setUbicacion(ubicacion1);
+	    	ciudad2.setUbicacion(ubicacion2);
+	    	ciudad3.setUbicacion(ubicacion3);
+	    	
+	    	getSession().save(ciudad);
+			getSession().save(ciudad1);
+			getSession().save(ciudad2);
+			getSession().save(ciudad3);	    	
+			
+			getSession().save(ubicacion);
+			getSession().save(ubicacion1);
+			getSession().save(ubicacion2);
+			getSession().save(ubicacion3);
+			
+			List <Ciudad> list=
+					getSession().createCriteria(Ciudad.class)
+					.createAlias("ubicacion", "ubi")
+					.add(Restrictions.le("ubi.latitud", new Double(0.0)))
+					.add(Restrictions.ge("ubi.latitud", new Double(-90.0)))
+					.list();
+			
+				assertThat(list.size()).isEqualTo(3);	
+								
+	    } 
 }
