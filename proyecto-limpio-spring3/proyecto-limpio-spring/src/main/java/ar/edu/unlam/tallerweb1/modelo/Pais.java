@@ -25,7 +25,7 @@ public class Pais {
 		private String idioma;
 		
 	    @OneToOne
-		private Ciudad ciudad;
+		private Ciudad capital;
 				
 		@ManyToOne
 		private Continente continente;
@@ -66,11 +66,11 @@ public class Pais {
 		}
 
 		public Ciudad getCiudad() {
-			return ciudad;
+			return capital;
 		}
 
 		public void setCiudad(Ciudad ciudad) {
-			this.ciudad = ciudad;
+			this.capital = ciudad;
 		}
 		
 }

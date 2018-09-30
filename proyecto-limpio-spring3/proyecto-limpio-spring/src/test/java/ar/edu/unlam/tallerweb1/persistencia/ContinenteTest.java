@@ -55,6 +55,7 @@ public class ContinenteTest extends SpringTest{
 		@Test
 		@Transactional
 		@Rollback(true)
+		@SuppressWarnings("unchecked")
 		public void buscarPaisesDeHablaInglesa(){
 			
 			Pais estadosUnidos=new Pais();
@@ -123,9 +124,7 @@ public class ContinenteTest extends SpringTest{
 	    	
 	    	assertThat(list.size()).isEqualTo(3);
 	    	
-	    	for(Pais pa : list) {
-	    		System.out.println(pa.getNombre());
-	    	}	
+	    		
 	    }
 	    
 	    
@@ -195,17 +194,12 @@ public class ContinenteTest extends SpringTest{
 			
 			List <Pais> list=
 					getSession().createCriteria(Pais.class)
-					.createAlias("ciudad", "ciu")
+					.createAlias("capital", "ciu")
 					.createAlias("ciu.ubicacion", "ubi")
-					.add(Restrictions.ge("ubi.latitud", new Double(0.0)))
-					.add(Restrictions.le("ubi.latitud", new Double(90.0)))
+					.add(Restrictions.ge("ubi.latitud", new Double(23.2614)))
 					.list();
 			
 				assertThat(list.size()).isEqualTo(3);	
-				
-				for(Pais pa : list) {
-		    		System.out.println(pa.getNombre());
-		    	}
 					
 	    }
 	    
@@ -214,7 +208,7 @@ public class ContinenteTest extends SpringTest{
 	    @Test
 	    @Transactional
 	    @Rollback(true)
-	    
+	    @SuppressWarnings("unchecked")
 	    public void ciudadesDelHemisferioSur() {
 	    	
             ciudad.setNombre("Londres");
@@ -252,7 +246,6 @@ public class ContinenteTest extends SpringTest{
 					getSession().createCriteria(Ciudad.class)
 					.createAlias("ubicacion", "ubi")
 					.add(Restrictions.le("ubi.latitud", new Double(0.0)))
-					.add(Restrictions.ge("ubi.latitud", new Double(-90.0)))
 					.list();
 			
 				assertThat(list.size()).isEqualTo(3);	
