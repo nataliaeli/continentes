@@ -4,20 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Error</title>
+<title>Invertir Orden</title>
 </head>
 <body>
-<h2 style="color:red">ERROR: Operación Inválida</h2>
-
-	${msj}
-	<br>
-	-mayuscula
-	<br>
-	-minuscula
-	<br>
-	-invertirOrden
-	<br>
-	-cantidadDeCaracteres
-	
+<h2 style="color:red">El resultado de Operacion: </h2><h4 style="color:black">${operacion}</h4>
+ <h2 style="color:red">Sobre: </h2> <h4 style="color:black">${cadena} </h4>
+  <h2 style="color:red">es: </h2><h4 style="color:black">${resultado}</h4>
+  
+  <p>${errorOrden}</p>
 </body>
 </html>
